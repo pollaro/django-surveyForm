@@ -5,14 +5,15 @@ def index(request):
         request.session['count'] = 1
     return render(request,'survey/index.html')
 
+def result(request):
+    return render(request,'survey/result.html')
+
 def process(request):
-    request.session['name'] = request.post['name']
-    request.session['loc'] = request.post['loc']
-    request.session['language'] = request.post['language']
-    request.session['comments'] = request.post['comments']
+    print "Processing..."
+    request.session['name'] = request.POST['name']
+    request.session['loc'] = request.POST['location']
+    request.session['language'] = request.POST['language']
+    request.session['comment'] = request.POST['comment']
     request.session['count'] += 1
     print request.session
     return redirect(result)
-
-def result(request):
-    return render(request,'survey/result.html')
